@@ -8,11 +8,11 @@ services:
     restart: unless-stopped
     entrypoint: /usr/src/start.sh
     ports:
-      - '9620:9616'
+      - '9630:9626'
     environment:
-      - DB_CONNECTION=mysql+pymysql://root:root@mysql:3306/polkascan?charset=utf8mb4
-      - SUBSTRATE_RPC_URL=wss://testnet-seeder.cherrynetwork.dev
-#      - SUBSTRATE_RPC_URL=wss://seeder-2.cherry.place
+      - DB_CONNECTION=mysql+pymysql://root:root@mysql:3307/polkascan?charset=utf8mb4
+#      - SUBSTRATE_RPC_URL=wss://testnet-seeder.cherrynetwork.dev
+      - SUBSTRATE_RPC_URL=wss://seeder-2.cherry.place
 #      - SUBSTRATE_RPC_URL=ws://host.docker.internal:9944
       - NODE_TYPE=archive
       - SUBSTRATE_SS58_FORMAT=42
@@ -35,9 +35,9 @@ services:
       - DB_USERNAME=root
       - DB_NAME=polkascan_explorer
       - DB_HOST=mysql
-      - DB_PORT=3306
+      - DB_PORT=3307
       - DB_PASSWORD=root
-      - BROADCAST_URI=redis://redis:6379
+      - BROADCAST_URI=redis://redis:6389
       - CHAIN_ID=polkadot
       - SENTRY_PROJECT_NAME=explorer-polling-v2
       - SENTRY_SERVER_NAME=polkadapt
@@ -52,7 +52,7 @@ services:
     restart: unless-stopped
     command: bash -c "/usr/src/start-api.sh"
     ports:
-      - "8000:8000"
+      - "8001:8001"
     depends_on:
       - redis
       - mysql
@@ -60,16 +60,16 @@ services:
       - DB_USERNAME=root
       - DB_NAME=polkascan_explorer
       - DB_HOST=mysql
-      - DB_PORT=3306
+      - DB_PORT=3307
       - DB_PASSWORD=root
       - DB_HARVESTER_NAME=polkascan
       - DOMAIN=localhost
       - SERVER_ADDR=localhost
-      - SERVER_PORT=8000
-      - WEBSOCKET_URI=ws://localhost:8000
+      - SERVER_PORT=8001
+      - WEBSOCKET_URI=ws://localhost:8001
       - BACKEND_CORS_ORIGINS=[]
-      - BROADCAST_URI=redis://redis:6379
-      - API_SQLA_URI=mysql+pymysql://root:root@mysql:3306/polkascan_explorer?charset=utf8mb4
+      - BROADCAST_URI=redis://redis:6389
+      - API_SQLA_URI=mysql+pymysql://root:root@mysql:3307/polkascan_explorer?charset=utf8mb4
       - CHAIN_ID=polkadot
       - SENTRY_PROJECT_NAME=explorer-api-v2
       - SENTRY_SERVER_NAME=polkadapt
@@ -82,7 +82,7 @@ services:
     image: polkascan/explorer-ui
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "8081:81"
     depends_on:
       - api
       - substrate-node
@@ -93,8 +93,8 @@ services:
     volumes:
       - 'substrate-node:/substrate'
     ports:
-      - '9944:9944'
-      - '9933:9933'
+      - '9945:9945'
+      - '9934:9934'
     command: --dev --base-path /substrate/db --ws-external --rpc-cors=all --rpc-external --rpc-methods=Unsafe --no-telemetry --no-prometheus --pruning=archive
 
   mysql:
@@ -102,7 +102,7 @@ services:
     volumes:
       - 'mysql-data:/var/lib/mysql'
     ports:
-      - '33061:3306'
+      - '33081:3308'
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=polkascan
