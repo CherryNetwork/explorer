@@ -1,6 +1,10 @@
 {
-  "local": {
-    "substrateRpcUrlArray": ["ws://127.0.0.1:9944"],
+  "Cherry Mainnet": {
+    "substrateRpcUrlArray": ["wss://seeder-2.cherry.place"],
     "explorerWsUrlArray": ["ws://127.0.0.1:8000/graphql-ws"]
+  },
+  "Cherry Testnet": {
+    "substrateRpcUrlArray": ["wss://testnet-seeder.cherrynetwork.dev"],
+    "explorerWsUrlArray": ["ws://127.0.0.1:8001/graphql-ws"]
   }
 }
