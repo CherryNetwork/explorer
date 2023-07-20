@@ -1,10 +1,6 @@
 {
-  "Cherry Mainnet": {
-    "substrateRpcUrlArray": ["wss://mainnet.seed.cherrylabs.org/"],
-    "explorerWsUrlArray": ["ws://127.0.0.1:8000/graphql-ws"]
-  },
   "Cherry Testnet": {
     "substrateRpcUrlArray": ["wss://testnet.seed.cherrylabs.org/"],
-    "explorerWsUrlArray": ["ws://127.0.0.1:8001/graphql-ws"]
+    "explorerWsUrlArray": ["ws://127.0.0.1:8000/graphql-ws"]
   }
 }
