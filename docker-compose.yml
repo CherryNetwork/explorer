@@ -12,7 +12,6 @@ services:
     environment:
       - DB_CONNECTION=mysql+pymysql://root:root@mysql:3306/polkascan?charset=utf8mb4
       - SUBSTRATE_RPC_URL=wss://testnet.seed.cherrylabs.org/
-      - SUBSTRATE_RPC_URL=wss://mainnet.seed.cherrylabs.org/
 #      - SUBSTRATE_RPC_URL=ws://host.docker.internal:9944
       - NODE_TYPE=archive
       - SUBSTRATE_SS58_FORMAT=42
